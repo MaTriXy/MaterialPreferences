@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+apply from: '../release-bintray.gradle'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -20,20 +20,9 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:${rootProject.supportLibVersion}"
-    implementation "com.android.support:cardview-v7:${rootProject.supportLibVersion}"
-    implementation ("com.pavelsikun:vintage-chroma:1.5") {
-        exclude group: 'com.android.support'
-    }
-}
-
-publish {
-    artifactId = 'mp'
-    userOrg = rootProject.userOrg
-    groupId = rootProject.groupId
-    uploadName = rootProject.uploadName
-    publishVersion = '1.0.9'
-    description = 'A highly flexible set of lovely looking views that provides functionality of preferences.'
-    licences = rootProject.licences
+    implementation deps.annotations
+    implementation deps.androidxCompat
+    implementation deps.cardView
+    api deps.colorPicker
 }
 
